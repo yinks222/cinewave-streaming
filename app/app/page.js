@@ -1,0 +1,130 @@
+'use client';
+
+import { useMemo, useState } from "react";
+import { Play, Plus, Search, X, Star } from "lucide-react";
+
+const movies = [
+  {
+    id: 1,
+    title: "Midnight Signal",
+    year: 2025,
+    genre: "Sci-Fi",
+    rating: "8.7",
+    time: "2h 08m",
+    img: "https://images.unsplash.com/photo-1519608487953-e999c86e7455?auto=format&fit=crop&w=900&q=80",
+    desc: "A radio astronomer intercepts a signal that seems to know the future."
+  },
+  {
+    id: 2,
+    title: "Neon Horizon",
+    year: 2024,
+    genre: "Action",
+    rating: "8.1",
+    time: "1h 54m",
+    img: "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=600&q=80"
+  },
+  {
+    id: 3,
+    title: "Afterglow",
+    year: 2025,
+    genre: "Drama",
+    rating: "8.4",
+    time: "2h 02m",
+    img: "https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=600&q=80"
+  },
+  {
+    id: 4,
+    title: "The Last Atlas",
+    year: 2023,
+    genre: "Adventure",
+    rating: "8.8",
+    time: "2h 21m",
+    img: "https://images.unsplash.com/photo-1446776877081-d282a0f896e2?auto=format&fit=crop&w=600&q=80"
+  },
+  {
+    id: 5,
+    title: "Velvet City",
+    year: 2024,
+    genre: "Crime",
+    rating: "7.9",
+    time: "1h 47m",
+    img: "https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=600&q=80"
+  },
+  {
+    id: 6,
+    title: "Static Hearts",
+    year: 2025,
+    genre: "Romance",
+    rating: "8.2",
+    time: "1h 42m",
+    img: "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?auto=format&fit=crop&w=600&q=80"
+  },
+  {
+    id: 7,
+    title: "Wild Meridian",
+    year: 2022,
+    genre: "Adventure",
+    rating: "8.0",
+    time: "2h 11m",
+    img: "https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=600&q=80"
+  },
+  {
+    id: 8,
+    title: "Deep Blue",
+    year: 2024,
+    genre: "Documentary",
+    rating: "9.0",
+    time: "1h 31m",
+    img: "https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=600&q=80"
+  },
+  {
+    id: 9,
+    title: "Nocturne",
+    year: 2023,
+    genre: "Thriller",
+    rating: "8.3",
+    time: "1h 58m",
+    img: "https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=600&q=80"
+  },
+  {
+    id: 10,
+    title: "Parallel",
+    year: 2025,
+    genre: "Sci-Fi",
+    rating: "8.6",
+    time: "2h 06m",
+    img: "https://images.unsplash.com/photo-1446776877081-d282a0f896e2?auto=format&fit=crop&w=600&q=80"
+  }
+];
+
+export default function Home() {
+  const [q, setQ] = useState("");
+  const [genre, setGenre] = useState("All");
+  const [selected, setSelected] = useState(null);
+
+  const genres = [
+    "All",
+    "Action",
+    "Drama",
+    "Sci-Fi",
+    "Adventure",
+    "Crime",
+    "Romance",
+    "Thriller"
+  ];
+
+  const featured = movies[0];
+
+  const filtered = useMemo(
+    () =>
+      movies.filter(
+        (m) =>
+          (genre === "All" || m.genre === genre) &&
+          m.title.toLowerCase().includes(q.toLowerCase())
+      ),
+    [genre, q]
+  );
+
+  return (
+    <main>
+      <header className="nav
