@@ -76,6 +76,7 @@ button {
 .nav nav a {
   color: inherit;
   text-decoration: none;
+  cursor: pointer;
 }
 
 .nav nav .active {
@@ -108,12 +109,18 @@ button {
   width: 145px;
 }
 
+.search input::placeholder {
+  color: #6f7684;
+}
+
 .avatar {
   width: 36px;
   height: 36px;
   border-radius: 50%;
   background: #2b3140;
   color: white;
+  font-size: 11px;
+  font-weight: 700;
 }
 
 .hero {
@@ -189,9 +196,17 @@ button {
   color: #0b0d10;
 }
 
+.primary:hover {
+  background: #f0ff78;
+}
+
 .secondary {
   background: #202531;
   color: white;
+}
+
+.secondary:hover {
+  background: #2b3140;
 }
 
 .content {
@@ -208,6 +223,7 @@ button {
   gap: 8px;
   overflow-x: auto;
   margin: 26px 0;
+  padding-bottom: 4px;
 }
 
 .chip {
@@ -218,6 +234,11 @@ button {
   border-radius: 99px;
   font-size: 11px;
   white-space: nowrap;
+}
+
+.chip:hover {
+  color: white;
+  border-color: #3a414f;
 }
 
 .chip.on {
@@ -234,6 +255,13 @@ button {
 
 .card {
   cursor: pointer;
+  transition:
+    transform 0.2s ease,
+    opacity 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
 }
 
 .poster {
@@ -249,6 +277,11 @@ button {
   height: 100%;
   object-fit: cover;
   display: block;
+  transition: transform 0.3s ease;
+}
+
+.card:hover .poster img {
+  transform: scale(1.04);
 }
 
 .badge {
@@ -261,6 +294,26 @@ button {
   color: white;
   font-size: 8px;
   text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.posterPlay {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  opacity: 0;
+  background: rgba(0, 0, 0, 0.35);
+  color: #e7ff49;
+  transition: opacity 0.2s ease;
+}
+
+.card:hover .posterPlay {
+  opacity: 1;
+}
+
+.posterPlay svg {
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.5));
 }
 
 .cardInfo h3 {
@@ -292,11 +345,12 @@ footer {
 .modal {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.8);
+  background: rgba(0, 0, 0, 0.82);
   z-index: 50;
   display: grid;
   place-items: center;
   padding: 25px;
+  backdrop-filter: blur(5px);
 }
 
 .modalBox {
@@ -305,6 +359,7 @@ footer {
   border: 1px solid #242a35;
   border-radius: 14px;
   overflow: hidden;
+  box-shadow: 0 20px 80px rgba(0, 0, 0, 0.6);
 }
 
 .close {
@@ -316,22 +371,27 @@ footer {
   background: #1a1e28;
   color: white;
   z-index: 2;
-}
-
-.player {
-  height: 490px;
-  background-size: cover;
-  background-position: center;
   display: grid;
   place-items: center;
 }
 
-.playBig {
-  width: 72px;
-  height: 72px;
-  border-radius: 50%;
-  background: #e7ff49;
-  color: #080a0e;
+.close:hover {
+  background: #303642;
+}
+
+.videoPlayer {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: #000;
+  overflow: hidden;
+}
+
+.videoPlayer video {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: contain;
+  background: #000;
 }
 
 .modalCopy {
@@ -339,6 +399,18 @@ footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 20px;
+}
+
+.modalCopy h2 {
+  margin: 0 0 7px;
+  font-size: 24px;
+}
+
+.modalCopy p {
+  margin: 0;
+  color: #737a88;
+  font-size: 12px;
 }
 
 @media (max-width: 800px) {
@@ -373,6 +445,10 @@ footer {
     font-size: 48px;
   }
 
+  .hero p {
+    font-size: 14px;
+  }
+
   .content {
     padding: 40px 5%;
   }
@@ -381,8 +457,29 @@ footer {
     gap: 14px;
   }
 
+  .poster {
+    border-radius: 8px;
+  }
+
   .player {
     height: 260px;
+  }
+
+  .modal {
+    padding: 12px;
+  }
+
+  .modalCopy {
+    padding: 18px;
+    gap: 15px;
+  }
+
+  .modalCopy h2 {
+    font-size: 20px;
+  }
+
+  .modalCopy .primary {
+    padding: 10px 13px;
   }
 
   footer {
