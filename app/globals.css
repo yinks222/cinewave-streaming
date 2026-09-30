@@ -5,9 +5,14 @@
 html,
 body {
   margin: 0;
+  padding: 0;
   background: #07090e;
   color: #f7f7f4;
-  font-family: Inter, system-ui, sans-serif;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  min-height: 100vh;
 }
 
 button,
@@ -24,22 +29,23 @@ button {
   height: 76px;
   display: flex;
   align-items: center;
-  gap: 42px;
-  padding: 0 5.5%;
+  gap: 40px;
+  padding: 0 6%;
   position: fixed;
   top: 0;
+  left: 0;
   z-index: 20;
   width: 100%;
   background: linear-gradient(
     #07090e,
-    rgba(7, 9, 14, 0.75),
+    rgba(7, 9, 14, 0.8),
     transparent
   );
 }
 
 .logo {
   font-weight: 900;
-  letter-spacing: 0.12em;
+  letter-spacing: 2px;
   font-size: 17px;
   display: flex;
   align-items: center;
@@ -53,18 +59,23 @@ button {
 .logoMark {
   display: grid;
   place-items: center;
-  width: 25px;
-  height: 25px;
+  width: 28px;
+  height: 28px;
   border-radius: 7px;
   background: #e7ff49;
-  color: #0a0c10;
+  color: #080a0e;
 }
 
 .nav nav {
   display: flex;
-  gap: 27px;
+  gap: 25px;
   color: #a7adba;
   font-size: 14px;
+}
+
+.nav nav a {
+  color: inherit;
+  text-decoration: none;
 }
 
 .nav nav .active {
@@ -74,7 +85,8 @@ button {
 .actions {
   margin-left: auto;
   display: flex;
-  gap: 16px;
+  gap: 15px;
+  align-items: center;
 }
 
 .search {
@@ -97,8 +109,8 @@ button {
 }
 
 .avatar {
-  width: 35px;
-  height: 35px;
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
   background: #2b3140;
   color: white;
@@ -121,19 +133,128 @@ button {
 .eyebrow,
 .kicker {
   font-size: 10px;
-  letter-spacing: 0.2em;
+  letter-spacing: 3px;
   color: #e7ff49;
   font-weight: 800;
 }
 
 .hero h1 {
-  font-size: clamp(54px, 7vw, 92px);
-  line-height: 0.92;
-  margin: 17px 0 22px;
+  font-size: 80px;
+  line-height: 0.95;
+  margin: 18px 0 22px;
 }
 
 .meta {
   display: flex;
   gap: 15px;
   align-items: center;
-  color
+  color: #c2c6cf;
+  font-size: 13px;
+}
+
+.rating,
+.miniRating {
+  color: #e7ff49;
+  display: flex;
+  gap: 5px;
+  align-items: center;
+}
+
+.hero p {
+  color: #b5bac5;
+  font-size: 16px;
+  line-height: 1.6;
+  max-width: 510px;
+}
+
+.heroButtons {
+  display: flex;
+  gap: 10px;
+  margin-top: 28px;
+}
+
+.primary,
+.secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 18px;
+  border-radius: 9px;
+  font-weight: 800;
+  font-size: 13px;
+}
+
+.primary {
+  background: #e7ff49;
+  color: #0b0d10;
+}
+
+.secondary {
+  background: #202531;
+  color: white;
+}
+
+.content {
+  padding: 55px 6% 70px;
+}
+
+.content h2 {
+  margin: 8px 0 0;
+  font-size: 26px;
+}
+
+.chips {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  margin: 26px 0;
+}
+
+.chip {
+  background: #121620;
+  color: #8f96a5;
+  border: 1px solid #222834;
+  padding: 8px 14px;
+  border-radius: 99px;
+  font-size: 11px;
+  white-space: nowrap;
+}
+
+.chip.on {
+  background: #e7ff49;
+  color: #0b0d10;
+  font-weight: 800;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.card {
+  cursor: pointer;
+}
+
+.poster {
+  aspect-ratio: 2 / 3;
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px;
+  background: #131720;
+}
+
+.poster img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.badge {
+  position: absolute;
+  right: 9px;
+  top: 9px;
+  padding: 5px 8px;
+  border-radius: 5px;
+  background: rgba(5, 7, 12, 0.75}
