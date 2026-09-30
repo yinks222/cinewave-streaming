@@ -56,4 +56,23 @@ const movies = [
     year: 2025,
     genre: "Romance",
     rating: "8.2",
-    time: "1h 42
+    time: "1h 42m",
+    img: "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?auto=format&fit=crop&w=600&q=80"
+  },
+  {
+    id: 7,
+    title: "Wild Meridian",
+    year: 2022,
+    genre: "Adventure",
+    rating: "8.0",
+    time: "2h 11m",
+    img: "https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=600&q=80"
+  },
+  {
+    id: 8,
+    title: "Deep Blue",
+    year: 2024,
+    genre: "Documentary",
+    rating: "9.0",
+    time: "1h 31m",
+    img
