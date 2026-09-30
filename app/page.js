@@ -292,3 +292,63 @@ export default function Home() {
     </main>
   );
 }
+  {
+    id: 7,
+    title: "Dark Protocol",
+    year: 2026,
+    genre: "Action",
+    rating: "9.1",
+    time: "2h 16m",
+    img: "https://images.unsplash.com/photo-1516339901601-2e1b62dc0c45?auto=format&fit=crop&w=600&q=80",
+    desc: "A rogue intelligence agent races against time to stop a global cyber attack."
+  },
+  {
+    id: 8,
+    title: "Beyond Earth",
+    year: 2026,
+    genre: "Sci-Fi",
+    rating: "9.0",
+    time: "2h 11m",
+    img: "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=600&q=80",
+    desc: "A team of astronauts discovers something impossible beyond the edge of the solar system."
+  },
+  {
+    id: 9,
+    title: "Golden Streets",
+    year: 2025,
+    genre: "Drama",
+    rating: "8.9",
+    time: "1h 58m",
+    img: "https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?auto=format&fit=crop&w=600&q=80",
+    desc: "An ambitious young filmmaker fights to make her dream a reality."
+  },
+  {
+    id: 10,
+    title: "Shadow District",
+    year: 2026,
+    genre: "Crime",
+    rating: "8.8",
+    time: "2h 04m",
+    img: "https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?auto=format&fit=crop&w=600&q=80",
+    desc: "A detective uncovers a secret network controlling the city's criminal underworld."
+  },
+  {
+    id: 11,
+    title: "Ocean's Edge",
+    year: 2025,
+    genre: "Adventure",
+    rating: "8.6",
+    time: "2h 19m",
+    img: "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=600&q=80",
+    desc: "A group of explorers venture into an unexplored ocean frontier."
+  },
+  {
+    id: 12,
+    title: "Electric Hearts",
+    year: 2026,
+    genre: "Romance",
+    rating: "8.5",
+    time: "1h 51m",
+    img: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=600&q=80",
+    desc: "Two strangers meet at a concert and discover an unexpected connection."
+  },];
