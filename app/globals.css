@@ -1,5 +1,3 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap");
-
 * {
   box-sizing: border-box;
   margin: 0;
@@ -11,9 +9,9 @@ html {
 }
 
 body {
-  background: #050505;
+  background: #070707;
   color: #ffffff;
-  font-family: "Inter", Arial, sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 button,
@@ -30,14 +28,21 @@ a {
   text-decoration: none;
 }
 
+/* =========================
+   MAIN
+========================= */
+
 .cinewave {
   min-height: 100vh;
   background:
-    radial-gradient(circle at 80% 10%, rgba(110, 20, 20, 0.12), transparent 30%),
-    #050505;
+    radial-gradient(circle at 80% 10%, rgba(120, 0, 255, 0.12), transparent 30%),
+    #070707;
+  overflow-x: hidden;
 }
 
-/* NAVBAR */
+/* =========================
+   NAVBAR
+========================= */
 
 .navbar {
   position: fixed;
@@ -51,7 +56,7 @@ a {
   justify-content: space-between;
   padding: 0 5%;
   background: rgba(5, 5, 5, 0.82);
-  backdrop-filter: blur(16px);
+  backdrop-filter: blur(18px);
   border-bottom: 1px solid rgba(255, 255, 255, 0.06);
 }
 
@@ -60,7 +65,7 @@ a {
   align-items: center;
   gap: 10px;
   font-weight: 800;
-  font-size: 20px;
+  font-size: 21px;
   letter-spacing: -0.5px;
 }
 
@@ -69,33 +74,28 @@ a {
   height: 34px;
   display: grid;
   place-items: center;
-  border-radius: 9px;
-  background: linear-gradient(135deg, #e50914, #ff3944);
+  border-radius: 10px;
+  background: linear-gradient(135deg, #8b5cf6, #ec4899);
   font-weight: 900;
-  box-shadow: 0 8px 25px rgba(229, 9, 20, 0.25);
-}
-
-.logoText {
-  white-space: nowrap;
+  box-shadow: 0 0 25px rgba(139, 92, 246, 0.35);
 }
 
 .navLinks {
   display: flex;
   align-items: center;
-  gap: 30px;
+  gap: 32px;
   margin-left: auto;
   margin-right: 35px;
 }
 
 .navLinks a {
-  color: #a7a7a7;
+  color: #aaa;
   font-size: 14px;
-  font-weight: 600;
-  transition: 0.2s ease;
+  transition: 0.25s ease;
 }
 
 .navLinks a:hover {
-  color: #ffffff;
+  color: #fff;
 }
 
 .navActions {
@@ -106,20 +106,16 @@ a {
 
 .iconButton,
 .menuButton {
-  width: 40px;
-  height: 40px;
+  border: 0;
+  background: transparent;
+  color: white;
   display: grid;
   place-items: center;
-  border: 0;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.07);
-  color: #fff;
-  transition: 0.2s ease;
 }
 
-.iconButton:hover,
-.menuButton:hover {
-  background: rgba(255, 255, 255, 0.13);
+.iconButton {
+  width: 40px;
+  height: 40px;
 }
 
 .menuButton {
@@ -128,48 +124,43 @@ a {
 
 .searchInput {
   width: 190px;
-  height: 40px;
-  padding: 0 14px;
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  padding: 10px 14px;
+  border: 1px solid #333;
+  border-radius: 9px;
   outline: none;
-  border-radius: 20px;
   background: #151515;
   color: white;
 }
 
-.searchInput::placeholder {
-  color: #777;
-}
-
-/* HERO */
+/* =========================
+   HERO
+========================= */
 
 .hero {
-  position: relative;
   min-height: 720px;
+  position: relative;
   display: flex;
   align-items: center;
+  padding: 120px 7% 90px;
   overflow: hidden;
-  padding: 120px 5% 90px;
 }
 
 .heroBackground {
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(90deg, #050505 0%, rgba(5, 5, 5, 0.88) 32%, rgba(5, 5, 5, 0.35) 68%, rgba(5, 5, 5, 0.82) 100%),
-    linear-gradient(0deg, #050505 0%, transparent 35%, rgba(0, 0, 0, 0.2) 100%),
-    url("https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=2200&q=90")
-    center / cover no-repeat;
-  transform: scale(1.02);
+    linear-gradient(90deg, #070707 5%, rgba(7, 7, 7, 0.75) 42%, rgba(7, 7, 7, 0.18) 100%),
+    url("https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=2000&q=90")
+    center / cover;
 }
 
 .heroGlow {
   position: absolute;
   width: 500px;
   height: 500px;
-  right: 8%;
-  top: 10%;
-  background: rgba(229, 9, 20, 0.15);
+  right: 5%;
+  top: 15%;
+  background: rgba(139, 92, 246, 0.2);
   filter: blur(120px);
   border-radius: 50%;
 }
@@ -177,8 +168,7 @@ a {
 .heroContent {
   position: relative;
   z-index: 2;
-  max-width: 650px;
-  padding-top: 50px;
+  max-width: 620px;
 }
 
 .heroTag {
@@ -186,169 +176,158 @@ a {
   align-items: center;
   gap: 8px;
   padding: 7px 12px;
-  margin-bottom: 18px;
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 6px;
-  background: rgba(0, 0, 0, 0.35);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
   color: #ddd;
   font-size: 11px;
-  font-weight: 800;
-  letter-spacing: 1.3px;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+  margin-bottom: 22px;
 }
 
 .liveDot {
   width: 7px;
   height: 7px;
   border-radius: 50%;
-  background: #e50914;
-  box-shadow: 0 0 12px rgba(229, 9, 20, 0.8);
+  background: #a855f7;
+  box-shadow: 0 0 12px #a855f7;
 }
 
 .hero h1 {
-  font-size: clamp(58px, 9vw, 110px);
-  line-height: 0.9;
-  letter-spacing: -5px;
-  font-weight: 800;
-  margin-bottom: 22px;
+  font-size: clamp(60px, 10vw, 120px);
+  line-height: 0.88;
+  letter-spacing: -6px;
+  margin-bottom: 25px;
 }
 
 .heroMeta,
 .seriesMeta {
   display: flex;
-  align-items: center;
   flex-wrap: wrap;
+  align-items: center;
   gap: 10px;
-  color: #c7c7c7;
+  color: #aaa;
   font-size: 14px;
-  margin-bottom: 20px;
 }
 
 .rating {
   display: inline-flex;
   align-items: center;
   gap: 5px;
-  color: #ffc107;
-  font-weight: 700;
+  color: #facc15;
 }
 
 .hero p {
-  max-width: 580px;
-  color: #b7b7b7;
-  line-height: 1.75;
+  max-width: 560px;
+  margin: 22px 0;
+  color: #b9b9b9;
+  line-height: 1.7;
   font-size: 15px;
 }
 
 .heroButtons {
   display: flex;
-  align-items: center;
   flex-wrap: wrap;
-  gap: 11px;
-  margin-top: 28px;
+  gap: 12px;
 }
 
 .primaryButton,
 .secondaryButton,
 .infoButton {
+  border: 0;
+  border-radius: 9px;
+  padding: 13px 19px;
   display: inline-flex;
   align-items: center;
-  justify-content: center;
-  gap: 9px;
-  min-height: 45px;
-  padding: 0 20px;
-  border: 0;
-  border-radius: 7px;
+  gap: 8px;
   font-weight: 700;
-  transition: 0.2s ease;
+  transition: transform 0.2s ease, opacity 0.2s ease;
 }
 
 .primaryButton {
-  background: #e50914;
-  color: white;
-}
-
-.primaryButton:hover {
-  background: #ff1824;
-  transform: translateY(-1px);
+  background: white;
+  color: black;
 }
 
 .secondaryButton,
 .infoButton {
-  background: rgba(255, 255, 255, 0.09);
+  background: rgba(255, 255, 255, 0.1);
   color: white;
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
+.primaryButton:hover,
 .secondaryButton:hover,
 .infoButton:hover {
-  background: rgba(255, 255, 255, 0.15);
+  transform: translateY(-2px);
 }
 
 .heroFade {
   position: absolute;
-  z-index: 1;
   bottom: 0;
   left: 0;
   right: 0;
   height: 180px;
-  background: linear-gradient(transparent, #050505);
+  background: linear-gradient(transparent, #070707);
 }
 
-/* SECTIONS */
+/* =========================
+   SECTIONS
+========================= */
 
 .contentSection {
   position: relative;
-  z-index: 5;
-  padding: 55px 5%;
+  z-index: 2;
+  padding: 70px 5%;
 }
 
 .sectionHeader {
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
-  margin-bottom: 25px;
+  gap: 20px;
+  margin-bottom: 28px;
 }
 
 .sectionLabel {
   display: block;
-  color: #e50914;
+  margin-bottom: 8px;
+  color: #9ca3af;
   font-size: 10px;
   font-weight: 800;
   letter-spacing: 1.8px;
-  margin-bottom: 7px;
+  text-transform: uppercase;
 }
 
 .sectionHeader h2 {
-  font-size: 28px;
+  font-size: 30px;
   letter-spacing: -1px;
 }
 
 .seeAll {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   gap: 4px;
-  background: none;
   border: 0;
+  background: transparent;
   color: #aaa;
-  font-size: 13px;
 }
 
-.seeAll:hover {
-  color: #fff;
-}
-
-/* TRENDING */
+/* =========================
+   TRENDING
+========================= */
 
 .trendingGrid {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  gap: 16px;
+  gap: 15px;
 }
 
 .trendingCard {
   position: relative;
-  height: 300px;
+  height: 330px;
   overflow: hidden;
-  border-radius: 9px;
+  border-radius: 13px;
   background: #111;
 }
 
@@ -356,7 +335,7 @@ a {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.4s ease;
+  transition: transform 0.45s ease;
 }
 
 .trendingCard:hover img {
@@ -367,18 +346,17 @@ a {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(transparent 30%, rgba(0, 0, 0, 0.88));
+  background: linear-gradient(transparent 40%, rgba(0, 0, 0, 0.9));
 }
 
 .trendNumber {
   position: absolute;
   z-index: 3;
   top: 12px;
-  left: 14px;
-  font-size: 32px;
+  left: 12px;
+  font-size: 35px;
   font-weight: 900;
-  color: rgba(255, 255, 255, 0.8);
-  font-style: italic;
+  color: rgba(255, 255, 255, 0.85);
 }
 
 .trendingOverlay {
@@ -386,7 +364,7 @@ a {
   z-index: 4;
   bottom: 18px;
   left: 16px;
-  right: 12px;
+  right: 16px;
 }
 
 .trendingOverlay span {
@@ -395,15 +373,17 @@ a {
 }
 
 .trendingOverlay h3 {
-  margin-top: 4px;
-  font-size: 17px;
+  margin-top: 5px;
+  font-size: 18px;
 }
 
-/* GENRES */
+/* =========================
+   GENRES
+========================= */
 
 .genreBar {
   display: flex;
-  gap: 8px;
+  gap: 9px;
   overflow-x: auto;
   padding-bottom: 20px;
   scrollbar-width: none;
@@ -415,32 +395,27 @@ a {
 
 .genreBar button {
   flex: 0 0 auto;
-  padding: 8px 16px;
-  border: 1px solid rgba(255, 255, 255, 0.09);
-  border-radius: 20px;
-  background: #111;
+  padding: 9px 15px;
+  border: 1px solid #292929;
+  border-radius: 999px;
+  background: #101010;
   color: #999;
-  font-size: 12px;
-  transition: 0.2s ease;
-}
-
-.genreBar button:hover {
-  color: white;
-  border-color: rgba(255, 255, 255, 0.2);
 }
 
 .genreBar .genreActive {
-  background: #e50914;
-  color: white;
-  border-color: #e50914;
+  background: white;
+  color: black;
+  border-color: white;
 }
 
-/* MOVIES */
+/* =========================
+   MOVIES
+========================= */
 
 .movieGrid {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 22px 15px;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 18px;
 }
 
 .movieCard {
@@ -449,9 +424,9 @@ a {
 
 .poster {
   position: relative;
-  height: 330px;
+  aspect-ratio: 2 / 3;
   overflow: hidden;
-  border-radius: 8px;
+  border-radius: 11px;
   background: #111;
 }
 
@@ -459,51 +434,46 @@ a {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: 0.35s ease;
+  transition: transform 0.35s ease;
 }
 
 .movieCard:hover .poster img {
-  transform: scale(1.04);
-  filter: brightness(0.7);
+  transform: scale(1.05);
 }
 
 .posterRating {
   position: absolute;
-  top: 10px;
-  left: 10px;
-  z-index: 2;
+  top: 9px;
+  right: 9px;
   display: flex;
   align-items: center;
   gap: 4px;
   padding: 5px 7px;
-  border-radius: 5px;
-  background: rgba(0, 0, 0, 0.72);
-  color: #ffc107;
+  border-radius: 6px;
+  background: rgba(0, 0, 0, 0.7);
+  color: #facc15;
   font-size: 11px;
-  font-weight: 700;
 }
 
 .posterPlay {
   position: absolute;
-  z-index: 3;
   left: 50%;
   top: 50%;
-  width: 48px;
-  height: 48px;
-  transform: translate(-50%, -50%) scale(0.7);
-  opacity: 0;
+  width: 46px;
+  height: 46px;
+  transform: translate(-50%, -50%);
   display: grid;
   place-items: center;
   border: 0;
   border-radius: 50%;
-  background: #e50914;
-  color: white;
+  background: white;
+  color: black;
+  opacity: 0;
   transition: 0.25s ease;
 }
 
 .movieCard:hover .posterPlay {
   opacity: 1;
-  transform: translate(-50%, -50%) scale(1);
 }
 
 .movieInfo {
@@ -511,54 +481,164 @@ a {
 }
 
 .movieInfo h3 {
-  font-size: 14px;
-  font-weight: 700;
+  font-size: 15px;
+  margin-bottom: 7px;
 }
 
 .movieMeta {
   display: flex;
   gap: 6px;
-  margin-top: 6px;
   color: #777;
-  font-size: 10px;
-  line-height: 1.4;
+  font-size: 11px;
 }
 
-/* SERIES */
+/* =========================
+   SERIES
+========================= */
 
 .seriesBanner {
-  position: relative;
-  min-height: 430px;
+  margin: 30px 5% 0;
+  min-height: 420px;
   display: flex;
   align-items: center;
-  margin: 30px 5% 80px;
-  padding: 60px;
+  padding: 70px;
+  border-radius: 20px;
+  position: relative;
   overflow: hidden;
-  border-radius: 14px;
   background:
-    linear-gradient(90deg, rgba(5, 5, 5, 0.96), rgba(5, 5, 5, 0.7), rgba(5, 5, 5, 0.2)),
-    url("https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=1800&q=85")
-    center / cover no-repeat;
+    linear-gradient(90deg, rgba(0, 0, 0, 0.92), rgba(0, 0, 0, 0.4)),
+    url("https://images.unsplash.com/photo-1519608487953-e999c86e7455?auto=format&fit=crop&w=1800&q=90")
+    center / cover;
 }
 
 .seriesContent {
-  max-width: 520px;
+  max-width: 560px;
+  position: relative;
+  z-index: 2;
 }
 
 .seriesContent h2 {
-  font-size: 55px;
-  letter-spacing: -2px;
+  font-size: 60px;
+  letter-spacing: -3px;
   margin-bottom: 15px;
 }
 
 .seriesContent p {
-  color: #aaa;
+  color: #bbb;
   line-height: 1.7;
-  font-size: 14px;
-  margin-bottom: 25px;
+  margin: 20px 0 25px;
 }
 
-/* EMPTY SEARCH */
+/* =========================
+   PLAYER
+========================= */
+
+.rebirthWatchArea {
+  width: 100%;
+}
+
+.cinewavePlayer {
+  width: 100%;
+  border-radius: 16px;
+  overflow: hidden;
+  background: #000;
+  border: 1px solid #222;
+}
+
+.videoElement {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  display: block;
+  background: #000;
+}
+
+.playerTitle {
+  padding: 14px 18px;
+  background: #101010;
+  color: #ddd;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.videoUnavailable {
+  min-height: 300px;
+  display: grid;
+  place-items: center;
+  border-radius: 16px;
+  background: #111;
+  border: 1px solid #222;
+  color: #888;
+}
+
+/* =========================
+   EPISODES
+========================= */
+
+.episodeHeader {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 35px;
+  margin-bottom: 18px;
+}
+
+.episodeHeader h3 {
+  font-size: 20px;
+}
+
+.episodeGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+
+.episodeButton {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 15px;
+  border: 1px solid #242424;
+  border-radius: 10px;
+  background: #101010;
+  color: #ddd;
+  text-align: left;
+}
+
+.episodeButton:hover {
+  border-color: #555;
+}
+
+.episodeActive {
+  background: #fff;
+  color: #000;
+  border-color: #fff;
+}
+
+.episodeNumber {
+  font-weight: 900;
+}
+
+.episodeTitle {
+  flex: 1;
+  font-size: 13px;
+}
+
+.episodeNotice {
+  margin-top: 18px;
+  padding: 15px;
+  border-radius: 10px;
+  background: #0e0e0e;
+  border: 1px solid #202020;
+}
+
+.episodeNotice p {
+  color: #777;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+/* =========================
+   EMPTY
+========================= */
 
 .empty {
   padding: 70px 20px;
@@ -568,34 +648,32 @@ a {
 
 .empty h3 {
   margin: 15px 0 7px;
-  color: white;
+  color: #ddd;
 }
 
-.empty p {
-  font-size: 13px;
-}
-
-/* FOOTER */
+/* =========================
+   FOOTER
+========================= */
 
 footer {
-  padding: 55px 5% 35px;
-  border-top: 1px solid rgba(255, 255, 255, 0.07);
+  margin-top: 80px;
+  padding: 55px 5%;
+  border-top: 1px solid #1b1b1b;
   text-align: center;
-  color: #777;
+  background: #050505;
 }
 
 .footerLogo {
   display: inline-flex;
   align-items: center;
-  gap: 9px;
-  color: white;
-  font-size: 19px;
+  gap: 10px;
   font-weight: 800;
-  margin-bottom: 10px;
+  font-size: 20px;
 }
 
 footer p {
-  font-size: 12px;
+  margin-top: 12px;
+  color: #666;
 }
 
 .footerLinks {
@@ -603,40 +681,29 @@ footer p {
   justify-content: center;
   gap: 25px;
   margin: 25px 0;
-  font-size: 12px;
-}
-
-.footerLinks span {
-  cursor: pointer;
-}
-
-.footerLinks span:hover {
-  color: white;
+  color: #888;
+  font-size: 13px;
 }
 
 footer small {
   color: #555;
-  font-size: 10px;
 }
 
-/* MOBILE */
+/* =========================
+   RESPONSIVE
+========================= */
 
-@media (max-width: 1000px) {
-  .trendingGrid,
-  .movieGrid {
+@media (max-width: 1100px) {
+  .trendingGrid {
     grid-template-columns: repeat(3, 1fr);
   }
 
-  .trendingCard {
-    height: 280px;
-  }
-
-  .poster {
-    height: 300px;
+  .movieGrid {
+    grid-template-columns: repeat(4, 1fr);
   }
 }
 
-@media (max-width: 700px) {
+@media (max-width: 760px) {
   .navbar {
     height: 64px;
     padding: 0 18px;
@@ -652,9 +719,9 @@ footer small {
     align-items: flex-start;
     gap: 0;
     margin: 0;
-    padding: 10px 18px 18px;
-    background: rgba(8, 8, 8, 0.98);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 15px 20px 20px;
+    background: rgba(8, 8, 8, 0.97);
+    border-bottom: 1px solid #222;
   }
 
   .navLinks.mobileOpen {
@@ -663,7 +730,7 @@ footer small {
 
   .navLinks a {
     width: 100%;
-    padding: 14px 5px;
+    padding: 14px 0;
   }
 
   .menuButton {
@@ -672,101 +739,49 @@ footer small {
 
   .searchInput {
     position: absolute;
-    right: 65px;
-    width: 150px;
+    top: 72px;
+    right: 15px;
+    width: 210px;
   }
 
   .hero {
-    min-height: 620px;
-    padding: 100px 20px 70px;
-  }
-
-  .heroBackground {
-    background:
-      linear-gradient(90deg, rgba(5, 5, 5, 0.92), rgba(5, 5, 5, 0.55)),
-      linear-gradient(0deg, #050505 0%, transparent 60%),
-      url("https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=1400&q=85")
-      center / cover no-repeat;
+    min-height: 680px;
+    padding: 120px 22px 70px;
   }
 
   .hero h1 {
-    font-size: 62px;
-    letter-spacing: -3px;
-  }
-
-  .hero p {
-    font-size: 13px;
+    font-size: 70px;
+    letter-spacing: -4px;
   }
 
   .contentSection {
-    padding: 40px 18px;
-  }
-
-  .sectionHeader h2 {
-    font-size: 23px;
+    padding: 55px 18px;
   }
 
   .trendingGrid {
-    grid-template-columns: repeat(2, 1fr);
+    display: flex;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .trendingGrid::-webkit-scrollbar {
+    display: none;
   }
 
   .trendingCard {
-    height: 250px;
+    flex: 0 0 210px;
+    height: 300px;
   }
 
   .movieGrid {
     grid-template-columns: repeat(2, 1fr);
-    gap: 22px 12px;
-  }
-
-  .poster {
-    height: 250px;
+    gap: 14px;
   }
 
   .seriesBanner {
-    margin: 20px 18px 55px;
-    min-height: 380px;
-    padding: 35px 25px;
+    margin: 20px 18px 0;
+    padding: 45px 25px;
+    min-height: 400px;
   }
 
-  .seriesContent h2 {
-    font-size: 43px;
-  }
-
-  .footerLinks {
-    gap: 15px;
-  }
-}
-
-@media (max-width: 420px) {
-  .logoText {
-    font-size: 17px;
-  }
-
-  .searchInput {
-    width: 130px;
-  }
-
-  .hero h1 {
-    font-size: 53px;
-  }
-
-  .heroButtons {
-    align-items: stretch;
-    flex-direction: column;
-  }
-
-  .primaryButton,
-  .secondaryButton,
-  .infoButton {
-    width: 100%;
-  }
-
-  .trendingCard {
-    height: 230px;
-  }
-
-  .poster {
-    height: 235px;
-  }
-}
+  .seriesContent
