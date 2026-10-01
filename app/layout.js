@@ -1,8 +1,9 @@
 import "./globals.css";
 
 export const metadata = {
-  title: "CineWave — Stream Movies",
-  description: "CineWave cinematic streaming interface"
+  title: "Vireon — Stream Movies & Series",
+  description:
+    "Vireon is a cinematic streaming platform for movies and TV series.",
 };
 
 export default function RootLayout({ children }) {
