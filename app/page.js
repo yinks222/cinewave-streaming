@@ -29,7 +29,6 @@ const movies = [
     rating: "8.7",
     image:
       "https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=1200&q=85",
-    featured: true,
   },
   {
     title: "Midnight Protocol",
@@ -137,17 +136,21 @@ export default function Home() {
     setTimeout(() => {
       document
         .getElementById("rebirth-player")
-        ?.scrollIntoView({ behavior: "smooth", block: "start" });
+        ?.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+        });
     }, 50);
   };
 
   return (
     <main className="cinewave">
+
       {/* NAVIGATION */}
       <header className="navbar">
         <div className="logo">
-          <span className="logoMark">C</span>
-          <span className="logoText">CineWave</span>
+          <span className="logoMark">V</span>
+          <span className="logoText">Vireon</span>
         </div>
 
         <nav className={menuOpen ? "navLinks mobileOpen" : "navLinks"}>
@@ -372,7 +375,7 @@ export default function Home() {
           </div>
 
           <p>
-            Watch Rebirth on CineWave. Choose an available episode below and
+            Watch Rebirth on Vireon. Choose an available episode below and
             start watching.
           </p>
 
@@ -404,6 +407,7 @@ export default function Home() {
           <div className="episodeHeader">
             <div>
               <span className="sectionLabel">EPISODES</span>
+
               <h3>
                 Season 1 · Episode {currentEpisode?.number}
               </h3>
@@ -437,7 +441,7 @@ export default function Home() {
           <div className="episodeNotice">
             <p>
               More Rebirth episodes will appear here as their authorized
-              streaming videos are added to CineWave.
+              streaming videos are added to Vireon.
             </p>
           </div>
         </div>
@@ -446,8 +450,8 @@ export default function Home() {
       {/* FOOTER */}
       <footer>
         <div className="footerLogo">
-          <span className="logoMark">C</span>
-          <span>CineWave</span>
+          <span className="logoMark">V</span>
+          <span>Vireon</span>
         </div>
 
         <p>Stream your next story.</p>
@@ -459,8 +463,9 @@ export default function Home() {
           <span>Genres</span>
         </div>
 
-        <small>© 2026 CineWave. All rights reserved.</small>
+        <small>© 2026 Vireon. All rights reserved.</small>
       </footer>
+
     </main>
   );
 }
