@@ -13,7 +13,7 @@ import {
 } from "lucide-react";
 
 const DEMO_VIDEO =
-  "https://archive.org/download/HouseOnHauntedHill1959/House-On-Haunted-Hill.mp4";
+  "https://stream.mux.com/OllxuX02N3QrgVAHd6GOaQZ7022ZcX00sz02KQ1LGo8FMN4.m3u8";
 
 /*
   Commercial movie pages are for discovery/trailers.
