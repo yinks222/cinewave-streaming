@@ -11,6 +11,15 @@ import {
   Star,
   Info,
 } from "lucide-react";
+import Player from "./Player";
+
+const episodes = [
+  {
+    number: 1,
+    title: "Episode 1",
+    playbackId: "OllxuX02N3QrgVAHd6GOaQZ7022ZcX00sz02KQ1LGo8FMN4",
+  },
+];
 
 const movies = [
   {
@@ -112,10 +121,25 @@ export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const [search, setSearch] = useState("");
+  const [selectedEpisode, setSelectedEpisode] = useState(1);
 
   const filteredMovies = movies.filter((movie) =>
     movie.title.toLowerCase().includes(search.toLowerCase())
   );
+
+  const currentEpisode =
+    episodes.find((episode) => episode.number === selectedEpisode) ||
+    episodes[0];
+
+  const watchEpisode = (episodeNumber) => {
+    setSelectedEpisode(episodeNumber);
+
+    setTimeout(() => {
+      document
+        .getElementById("rebirth-player")
+        ?.scrollIntoView({ behavior: "smooth", block: "start" });
+    }, 50);
+  };
 
   return (
     <main className="cinewave">
@@ -193,6 +217,7 @@ export default function Home() {
             <span>Chinese Drama</span>
             <span>•</span>
             <span>Season 1</span>
+
             <span className="rating">
               <Star size={15} fill="currentColor" />
               8.7
@@ -205,9 +230,12 @@ export default function Home() {
           </p>
 
           <div className="heroButtons">
-            <button className="primaryButton">
+            <button
+              className="primaryButton"
+              onClick={() => watchEpisode(1)}
+            >
               <Play size={18} fill="currentColor" />
-              Watch Now
+              Watch Episode 1
             </button>
 
             <button className="secondaryButton">
@@ -271,7 +299,6 @@ export default function Home() {
           </button>
         </div>
 
-        {/* GENRES */}
         <div className="genreBar">
           {genres.map((genre, index) => (
             <button
@@ -294,7 +321,15 @@ export default function Home() {
                   {movie.rating}
                 </div>
 
-                <button className="posterPlay" aria-label={`Play ${movie.title}`}>
+                <button
+                  className="posterPlay"
+                  aria-label={`Play ${movie.title}`}
+                  onClick={() => {
+                    if (movie.title === "Rebirth") {
+                      watchEpisode(1);
+                    }
+                  }}
+                >
                   <Play size={18} fill="currentColor" />
                 </button>
               </div>
@@ -337,14 +372,74 @@ export default function Home() {
           </div>
 
           <p>
-            Season 1 is available on CineWave. Select an episode and start
-            watching.
+            Watch Rebirth on CineWave. Choose an available episode below and
+            start watching.
           </p>
 
-          <button className="primaryButton">
+          <button
+            className="primaryButton"
+            onClick={() => watchEpisode(1)}
+          >
             <Play size={18} fill="currentColor" />
             Watch Series
           </button>
+        </div>
+      </section>
+
+      {/* REBIRTH PLAYER */}
+      <section id="rebirth-player" className="contentSection">
+        <div className="sectionHeader">
+          <div>
+            <span className="sectionLabel">NOW PLAYING</span>
+            <h2>Rebirth — Season 1</h2>
+          </div>
+        </div>
+
+        <div className="rebirthWatchArea">
+          <Player
+            playbackId={currentEpisode?.playbackId}
+            title={`Rebirth — Episode ${currentEpisode?.number}`}
+          />
+
+          <div className="episodeHeader">
+            <div>
+              <span className="sectionLabel">EPISODES</span>
+              <h3>
+                Season 1 · Episode {currentEpisode?.number}
+              </h3>
+            </div>
+          </div>
+
+          <div className="episodeGrid">
+            {episodes.map((episode) => (
+              <button
+                key={episode.number}
+                className={
+                  selectedEpisode === episode.number
+                    ? "episodeButton episodeActive"
+                    : "episodeButton"
+                }
+                onClick={() => watchEpisode(episode.number)}
+              >
+                <span className="episodeNumber">
+                  {episode.number}
+                </span>
+
+                <span className="episodeTitle">
+                  {episode.title}
+                </span>
+
+                <Play size={15} />
+              </button>
+            ))}
+          </div>
+
+          <div className="episodeNotice">
+            <p>
+              More Rebirth episodes will appear here as their authorized
+              streaming videos are added to CineWave.
+            </p>
+          </div>
         </div>
       </section>
 
