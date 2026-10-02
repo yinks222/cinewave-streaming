@@ -1,5 +1,4 @@
-
-   "use client";
+"use client";
 
 import { useEffect, useRef } from "react";
 
@@ -68,4 +67,4 @@ export default function Player({ playbackId, title }) {
       </div>
     </div>
   );
-}    
+}
