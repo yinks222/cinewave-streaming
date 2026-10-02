@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from "react";
 import {
   Search,
   Play,
@@ -11,13 +10,15 @@ import {
   Star,
   Info,
 } from "lucide-react";
+import { useState } from "react";
 import Player from "./Player";
 
 const episodes = [
   {
-    number: 1,
+    id: 1,
     title: "Episode 1",
-    playbackId: "OllxuX02N3QrgVAHd6GOaQZ7022ZcX00sz02KQ1LGo8FMN4",
+    playbackId:
+      "TR5UuculQkUL6NQbUcBpg3W4qCN00v004so2HIRmEUY7I",
   },
 ];
 
@@ -25,316 +26,226 @@ const movies = [
   {
     title: "Rebirth",
     year: "2026",
-    genre: "Chinese Drama",
-    rating: "8.7",
+    rating: "8.9",
+    genre: "Sci-Fi",
     image:
-      "https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=1200&q=85",
+      "https://images.unsplash.com/photo-1534447677768-be436bb09401?auto=format&fit=crop&w=1200&q=80",
+    featured: true,
   },
   {
     title: "Midnight Protocol",
     year: "2026",
-    genre: "Action • Thriller",
-    rating: "8.2",
+    rating: "8.4",
+    genre: "Thriller",
     image:
-      "https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=900&q=85",
+      "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=1200&q=80",
   },
   {
     title: "The Last Horizon",
-    year: "2026",
-    genre: "Sci-Fi",
-    rating: "8.5",
+    year: "2025",
+    rating: "8.7",
+    genre: "Adventure",
     image:
-      "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=900&q=85",
+      "https://images.unsplash.com/photo-1462331940025-496dfbfc7564?auto=format&fit=crop&w=1200&q=80",
   },
   {
     title: "Shadow City",
     year: "2026",
-    genre: "Crime • Drama",
-    rating: "8.1",
+    rating: "8.2",
+    genre: "Crime",
     image:
-      "https://images.unsplash.com/photo-1519608487953-e999c86e7455?auto=format&fit=crop&w=900&q=85",
+      "https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?auto=format&fit=crop&w=1200&q=80",
   },
   {
     title: "After Tomorrow",
-    year: "2026",
-    genre: "Sci-Fi • Drama",
-    rating: "8.4",
+    year: "2025",
+    rating: "8.1",
+    genre: "Drama",
     image:
-      "https://images.unsplash.com/photo-1446776877081-d282a0f896e2?auto=format&fit=crop&w=900&q=85",
+      "https://images.unsplash.com/photo-1446776877081-d282a0f896e2?auto=format&fit=crop&w=1200&q=80",
   },
   {
     title: "Lost Kingdom",
     year: "2026",
-    genre: "Adventure • Drama",
-    rating: "8.0",
+    rating: "8.6",
+    genre: "Fantasy",
     image:
-      "https://images.unsplash.com/photo-1518709594023-6eab9bab7b23?auto=format&fit=crop&w=900&q=85",
+      "https://images.unsplash.com/photo-1518709594023-6eab9bab7b23?auto=format&fit=crop&w=1200&q=80",
   },
 ];
 
 const trending = [
-  {
-    title: "Rebirth",
-    subtitle: "Chinese Series",
-    image:
-      "https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=900&q=85",
-  },
-  {
-    title: "Midnight Protocol",
-    subtitle: "Action",
-    image:
-      "https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=900&q=85",
-  },
-  {
-    title: "The Last Horizon",
-    subtitle: "Sci-Fi",
-    image:
-      "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=900&q=85",
-  },
-  {
-    title: "Shadow City",
-    subtitle: "Crime Series",
-    image:
-      "https://images.unsplash.com/photo-1519608487953-e999c86e7455?auto=format&fit=crop&w=900&q=85",
-  },
-  {
-    title: "After Tomorrow",
-    subtitle: "Sci-Fi",
-    image:
-      "https://images.unsplash.com/photo-1446776877081-d282a0f896e2?auto=format&fit=crop&w=900&q=85",
-  },
+  "Rebirth",
+  "Midnight Protocol",
+  "The Last Horizon",
+  "Shadow City",
+  "After Tomorrow",
 ];
 
 const genres = [
-  "All",
   "Action",
-  "Drama",
+  "Adventure",
   "Comedy",
-  "Romance",
-  "Thriller",
+  "Crime",
+  "Drama",
+  "Fantasy",
+  "Horror",
   "Sci-Fi",
-  "Chinese",
 ];
 
 export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
-  const [search, setSearch] = useState("");
-  const [selectedEpisode, setSelectedEpisode] = useState(1);
+  const [searchTerm, setSearchTerm] = useState("");
 
-  const filteredMovies = movies.filter((movie) =>
-    movie.title.toLowerCase().includes(search.toLowerCase())
-  );
-
-  const currentEpisode =
-    episodes.find((episode) => episode.number === selectedEpisode) ||
-    episodes[0];
-
-  const watchEpisode = (episodeNumber) => {
-    setSelectedEpisode(episodeNumber);
-
-    setTimeout(() => {
-      document
-        .getElementById("rebirth-player")
-        ?.scrollIntoView({
-          behavior: "smooth",
-          block: "start",
-        });
-    }, 50);
+  const watchEpisode = () => {
+    document
+      .getElementById("rebirth-player")
+      ?.scrollIntoView({ behavior: "smooth" });
   };
 
-  return (
-    <main className="cinewave">
+  const filteredMovies = movies.filter((movie) =>
+    movie.title.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
-      {/* NAVIGATION */}
-      <header className="navbar">
-        <div className="logo">
-          <span className="logoMark">V</span>
-          <span className="logoText">Vireon</span>
+  return (
+    <main>
+      {/* NAVBAR */}
+      <nav className="navbar">
+        <div className="navContainer">
+          <a href="#" className="logo">
+            VIREON
+          </a>
+
+          <div className={`navLinks ${menuOpen ? "active" : ""}`}>
+            <a href="#home" onClick={() => setMenuOpen(false)}>
+              Home
+            </a>
+            <a href="#trending" onClick={() => setMenuOpen(false)}>
+              Trending
+            </a>
+            <a href="#movies" onClick={() => setMenuOpen(false)}>
+              Movies
+            </a>
+            <a href="#series" onClick={() => setMenuOpen(false)}>
+              TV Series
+            </a>
+          </div>
+
+          <div className="navActions">
+            <button
+              className="iconButton"
+              onClick={() => setSearchOpen(!searchOpen)}
+              aria-label="Search"
+            >
+              <Search size={21} />
+            </button>
+
+            <button
+              className="menuButton"
+              onClick={() => setMenuOpen(!menuOpen)}
+              aria-label="Menu"
+            >
+              {menuOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
+          </div>
         </div>
 
-        <nav className={menuOpen ? "navLinks mobileOpen" : "navLinks"}>
-          <a href="#home" onClick={() => setMenuOpen(false)}>
-            Home
-          </a>
-
-          <a href="#trending" onClick={() => setMenuOpen(false)}>
-            Trending
-          </a>
-
-          <a href="#movies" onClick={() => setMenuOpen(false)}>
-            Movies
-          </a>
-
-          <a href="#series" onClick={() => setMenuOpen(false)}>
-            TV Series
-          </a>
-        </nav>
-
-        <div className="navActions">
-          {searchOpen && (
+        {searchOpen && (
+          <div className="searchBox">
+            <Search size={20} />
             <input
-              className="searchInput"
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
+              type="text"
               placeholder="Search movies..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
               autoFocus
             />
-          )}
-
-          <button
-            className="iconButton"
-            onClick={() => setSearchOpen(!searchOpen)}
-            aria-label="Search"
-          >
-            <Search size={20} />
-          </button>
-
-          <button
-            className="menuButton"
-            onClick={() => setMenuOpen(!menuOpen)}
-            aria-label="Menu"
-          >
-            {menuOpen ? <X size={22} /> : <Menu size={22} />}
-          </button>
-        </div>
-      </header>
+          </div>
+        )}
+      </nav>
 
       {/* HERO */}
-      <section id="home" className="hero">
+      <section className="hero" id="home">
         <div className="heroBackground">
-          <div className="heroGlow" />
+          <img
+            src="https://images.unsplash.com/photo-1534447677768-be436bb09401?auto=format&fit=crop&w=2000&q=90"
+            alt="Rebirth"
+          />
         </div>
 
+        <div className="heroOverlay"></div>
+
         <div className="heroContent">
-          <div className="heroTag">
-            <span className="liveDot" />
-            FREE TO WATCH
-          </div>
+          <div className="heroBadge">VIREON ORIGINAL</div>
 
           <h1>REBIRTH</h1>
 
           <div className="heroMeta">
             <span>2026</span>
-            <span>•</span>
-            <span>Chinese Drama</span>
-            <span>•</span>
-            <span>Season 1</span>
-
+            <span className="dot">•</span>
+            <span>8 Episodes</span>
+            <span className="dot">•</span>
             <span className="rating">
               <Star size={15} fill="currentColor" />
-              8.7
+              8.9
             </span>
           </div>
 
           <p>
-            Enter the world of Rebirth — a gripping Chinese drama filled with
-            love, destiny, conflict and unexpected twists.
+            Humanity has reached the edge of existence. When an ancient force
+            awakens beyond the stars, one unlikely hero must uncover the truth
+            before Earth faces its final dawn.
           </p>
 
           <div className="heroButtons">
-            <button
-              className="primaryButton"
-              onClick={() => watchEpisode(1)}
-            >
-              <Play size={18} fill="currentColor" />
-              Watch Episode 1
+            <button className="primaryButton" onClick={watchEpisode}>
+              <Play size={20} fill="currentColor" />
+              Watch Now
             </button>
 
             <button className="secondaryButton">
-              <Plus size={18} />
-              My List
-            </button>
-
-            <button className="infoButton">
-              <Info size={18} />
-              Details
+              <Info size={20} />
+              More Info
             </button>
           </div>
-        </div>
-
-        <div className="heroFade" />
-      </section>
-
-      {/* TRENDING */}
-      <section id="trending" className="contentSection">
-        <div className="sectionHeader">
-          <div>
-            <span className="sectionLabel">WHAT'S HOT</span>
-            <h2>Trending Now</h2>
-          </div>
-
-          <button className="seeAll">
-            See All
-            <ChevronRight size={17} />
-          </button>
-        </div>
-
-        <div className="trendingGrid">
-          {trending.map((movie, index) => (
-            <article className="trendingCard" key={movie.title}>
-              <div className="trendNumber">
-                {String(index + 1).padStart(2, "0")}
-              </div>
-
-              <img src={movie.image} alt={movie.title} />
-
-              <div className="trendingOverlay">
-                <span>{movie.subtitle}</span>
-                <h3>{movie.title}</h3>
-              </div>
-            </article>
-          ))}
         </div>
       </section>
 
       {/* MOVIES */}
-      <section id="movies" className="contentSection">
+      <section className="section" id="movies">
         <div className="sectionHeader">
           <div>
-            <span className="sectionLabel">EXPLORE</span>
-            <h2>Popular Movies</h2>
+            <p className="sectionLabel">DISCOVER</p>
+            <h2>Movies</h2>
           </div>
 
-          <button className="seeAll">
-            See All
-            <ChevronRight size={17} />
+          <button className="viewAll">
+            View All
+            <ChevronRight size={18} />
           </button>
-        </div>
-
-        <div className="genreBar">
-          {genres.map((genre, index) => (
-            <button
-              key={genre}
-              className={index === 0 ? "genreActive" : ""}
-            >
-              {genre}
-            </button>
-          ))}
         </div>
 
         <div className="movieGrid">
           {filteredMovies.map((movie) => (
-            <article className="movieCard" key={movie.title}>
-              <div className="poster">
+            <div
+              className="movieCard"
+              key={movie.title}
+              onClick={movie.featured ? watchEpisode : undefined}
+            >
+              <div className="moviePoster">
                 <img src={movie.image} alt={movie.title} />
 
-                <div className="posterRating">
+                <div className="posterOverlay">
+                  <button className="posterPlay">
+                    <Play size={20} fill="currentColor" />
+                  </button>
+                </div>
+
+                <div className="movieRating">
                   <Star size={13} fill="currentColor" />
                   {movie.rating}
                 </div>
-
-                <button
-                  className="posterPlay"
-                  aria-label={`Play ${movie.title}`}
-                  onClick={() => {
-                    if (movie.title === "Rebirth") {
-                      watchEpisode(1);
-                    }
-                  }}
-                >
-                  <Play size={18} fill="currentColor" />
-                </button>
               </div>
 
               <div className="movieInfo">
@@ -346,126 +257,207 @@ export default function Home() {
                   <span>{movie.genre}</span>
                 </div>
               </div>
-            </article>
+            </div>
           ))}
         </div>
+      </section>
 
-        {filteredMovies.length === 0 && (
-          <div className="empty">
-            <Search size={35} />
-            <h3>No movies found</h3>
-            <p>Try another search.</p>
+      {/* TRENDING */}
+      <section className="section trendingSection" id="trending">
+        <div className="sectionHeader">
+          <div>
+            <p className="sectionLabel">POPULAR NOW</p>
+            <h2>Trending</h2>
           </div>
-        )}
+
+          <button className="viewAll">
+            Explore
+            <ChevronRight size={18} />
+          </button>
+        </div>
+
+        <div className="trendingList">
+          {trending.map((title, index) => {
+            const movie = movies.find((item) => item.title === title);
+
+            return (
+              <div className="trendingItem" key={title}>
+                <span className="trendingNumber">
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+
+                <div className="trendingImage">
+                  <img src={movie?.image} alt={title} />
+                </div>
+
+                <div className="trendingInfo">
+                  <h3>{title}</h3>
+
+                  <div>
+                    <span>{movie?.year}</span>
+                    <span> • </span>
+                    <span>{movie?.genre}</span>
+                  </div>
+                </div>
+
+                <div className="trendingRating">
+                  <Star size={14} fill="currentColor" />
+                  {movie?.rating}
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </section>
+
+      {/* GENRES */}
+      <section className="section genresSection">
+        <div className="sectionHeader">
+          <div>
+            <p className="sectionLabel">EXPLORE</p>
+            <h2>Browse by Genre</h2>
+          </div>
+        </div>
+
+        <div className="genresGrid">
+          {genres.map((genre) => (
+            <button className="genreCard" key={genre}>
+              <span>{genre}</span>
+              <ChevronRight size={18} />
+            </button>
+          ))}
+        </div>
       </section>
 
       {/* REBIRTH SERIES */}
-      <section id="series" className="seriesBanner">
-        <div className="seriesContent">
-          <span className="sectionLabel">FEATURED SERIES</span>
+      <section className="seriesBanner" id="series">
+        <div className="seriesBackground">
+          <img
+            src="https://images.unsplash.com/photo-1462331940025-496dfbfc7564?auto=format&fit=crop&w=2000&q=90"
+            alt="Rebirth series"
+          />
+        </div>
 
-          <h2>Rebirth</h2>
+        <div className="seriesOverlay"></div>
+
+        <div className="seriesContent">
+          <p className="sectionLabel">VIREON ORIGINAL SERIES</p>
+
+          <h2>REBIRTH</h2>
+
+          <p>
+            A new beginning is coming. Follow the journey through worlds
+            unknown as humanity discovers what lies beyond the stars.
+          </p>
 
           <div className="seriesMeta">
             <span>2026</span>
             <span>•</span>
-            <span>Chinese Drama</span>
+            <span>8 Episodes</span>
             <span>•</span>
+            <span>SCI-FI</span>
+          </div>
+        </div>
+      </section>
+
+      {/* PLAYER */}
+      <section className="playerSection" id="rebirth-player">
+        <div className="sectionHeader">
+          <div>
+            <p className="sectionLabel">WATCH NOW</p>
+            <h2>Rebirth</h2>
+          </div>
+        </div>
+
+        <div className="playerWrapper">
+          <Player
+            playbackId={episodes[0].playbackId}
+            title="Rebirth — Episode 1"
+          />
+        </div>
+
+        <div className="episodesSection">
+          <div className="episodesHeader">
+            <h3>Episodes</h3>
             <span>Season 1</span>
           </div>
 
+          <div className="episodeList">
+            {episodes.map((episode) => (
+              <button
+                className="episodeButton active"
+                key={episode.id}
+                onClick={() => {
+                  document
+                    .getElementById("rebirth-player")
+                    ?.scrollIntoView({ behavior: "smooth" });
+                }}
+              >
+                <span className="episodeNumber">
+                  {String(episode.id).padStart(2, "0")}
+                </span>
+
+                <span className="episodeTitle">{episode.title}</span>
+
+                <Play size={17} fill="currentColor" />
+              </button>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="ctaSection">
+        <div className="ctaContent">
+          <p className="sectionLabel">VIREON</p>
+          <h2>Where Stories Come Alive.</h2>
           <p>
-            Watch Rebirth on Vireon. Choose an available episode below and
-            start watching.
+            Discover unforgettable movies and series in a cinematic streaming
+            experience built for modern entertainment.
           </p>
 
-          <button
-            className="primaryButton"
-            onClick={() => watchEpisode(1)}
-          >
-            <Play size={18} fill="currentColor" />
-            Watch Series
+          <button className="primaryButton" onClick={watchEpisode}>
+            <Play size={20} fill="currentColor" />
+            Start Watching
           </button>
         </div>
       </section>
 
-      {/* REBIRTH PLAYER */}
-      <section id="rebirth-player" className="contentSection">
-        <div className="sectionHeader">
-          <div>
-            <span className="sectionLabel">NOW PLAYING</span>
-            <h2>Rebirth — Season 1</h2>
+      {/* FOOTER */}
+      <footer className="footer">
+        <div className="footerTop">
+          <div className="footerBrand">
+            <a href="#" className="logo">
+              VIREON
+            </a>
+
+            <p>Where Stories Come Alive.</p>
           </div>
-        </div>
 
-        <div className="rebirthWatchArea">
-          <Player
-            playbackId={currentEpisode?.playbackId}
-            title={`Rebirth — Episode ${currentEpisode?.number}`}
-          />
-
-          <div className="episodeHeader">
+          <div className="footerLinks">
             <div>
-              <span className="sectionLabel">EPISODES</span>
+              <h4>Explore</h4>
+              <a href="#home">Home</a>
+              <a href="#trending">Trending</a>
+              <a href="#movies">Movies</a>
+              <a href="#series">TV Series</a>
+            </div>
 
-              <h3>
-                Season 1 · Episode {currentEpisode?.number}
-              </h3>
+            <div>
+              <h4>Vireon</h4>
+              <a href="#">About</a>
+              <a href="#">Contact</a>
+              <a href="#">Privacy</a>
+              <a href="#">Terms</a>
             </div>
           </div>
-
-          <div className="episodeGrid">
-            {episodes.map((episode) => (
-              <button
-                key={episode.number}
-                className={
-                  selectedEpisode === episode.number
-                    ? "episodeButton episodeActive"
-                    : "episodeButton"
-                }
-                onClick={() => watchEpisode(episode.number)}
-              >
-                <span className="episodeNumber">
-                  {episode.number}
-                </span>
-
-                <span className="episodeTitle">
-                  {episode.title}
-                </span>
-
-                <Play size={15} />
-              </button>
-            ))}
-          </div>
-
-          <div className="episodeNotice">
-            <p>
-              More Rebirth episodes will appear here as their authorized
-              streaming videos are added to Vireon.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* FOOTER */}
-      <footer>
-        <div className="footerLogo">
-          <span className="logoMark">V</span>
-          <span>Vireon</span>
         </div>
 
-        <p>Stream your next story.</p>
-
-        <div className="footerLinks">
-          <span>Home</span>
-          <span>Movies</span>
-          <span>Series</span>
-          <span>Genres</span>
+        <div className="footerBottom">
+          <p>© 2026 Vireon. All rights reserved.</p>
+          <p>Where Stories Come Alive.</p>
         </div>
-
-        <small>© 2026 Vireon. All rights reserved.</small>
       </footer>
-
     </main>
   );
 }
